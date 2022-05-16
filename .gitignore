@@ -1,2 +1,5 @@
 dist/
 node_modules/
+
+# cypress videos of test execution
+cypress/videos/
