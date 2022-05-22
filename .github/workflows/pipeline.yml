@@ -69,3 +69,22 @@ jobs:
           COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message)) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+      - name: Test Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ success() }}
+        with:
+          severity: info
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+          text: A new version of Pokedex deployed
+          details: to https://fullstackopen-pokedex-56466.herokuapp.com/ by adecora.
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ failure() }}
+        with:
+          severity: error
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+          text: Build failed
+          description: commit
+          details: ${{ github.event.head_commit.message }} by ${{ github.event.head_commit.author.username }} broke the build :(
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
