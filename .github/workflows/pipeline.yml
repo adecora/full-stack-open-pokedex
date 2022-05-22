@@ -59,7 +59,7 @@ jobs:
           severity: info
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           text: A new version of Pokedex deployed
-          details: to https://fullstackopen-pokedex-56466.herokuapp.com/ by adecora.
+          description: to https://fullstackopen-pokedex-56466.herokuapp.com/ by adecora.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Failure build
