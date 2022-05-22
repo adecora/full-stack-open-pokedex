@@ -41,4 +41,4 @@ jobs:
         run: echo "#skip"
       - name: "does not contains #skip v.2"
         if: ${{ !contains(github.event.commits.*.message, '#skip') }}
-        run: echo "not #skip"
+        run: echo "not \#skip"
