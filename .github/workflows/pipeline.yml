@@ -12,7 +12,7 @@ jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
-      - name: Chekout the code (checkout project source code from git)
+      - name: Checkout the code (checkout project source code from git)
         uses: actions/checkout@v3
 
       - name: Setup node
@@ -43,7 +43,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "fullstackopen-pokedex-56466"
           heroku_email: "alexinhocora@gmail.com"
           healthcheck: "https://fullstackopen-pokedex-56466.herokuapp.com/health"
@@ -55,6 +55,10 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
         env:
