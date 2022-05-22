@@ -2,7 +2,7 @@ name:  Schedule actions
 
 on:
   schedule:
-      - cron: '0/5 * * * *'
+      - cron: '0 0 1 JAN *'
 
 jobs:
   periodic-health-check:
