@@ -37,8 +37,8 @@ jobs:
             COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message)) }}
         run: echo "#skip not in  $COMMIT_MESSAGES"
       - name: "contains #skip v.2"
-        if: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
+        if: ${{ contains(github.event.commits.*.message, '#skip') }}
         run: echo "#skip"
       - name: "does not contains #skip v.2"
-        if: ${{ !contains(toJson(github.event.commits.*.message), '#skip') }}
+        if: ${{ !contains(github.event.commits.*.message, '#skip') }}
         run: echo "not #skip"
