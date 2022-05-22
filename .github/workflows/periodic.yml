@@ -1,4 +1,4 @@
-name:  schedule actions
+name:  Schedule actions
 
 on:
   push:

@@ -50,7 +50,7 @@ jobs:
           heroku_email: "alexinhocora@gmail.com"
           healthcheck: "https://fullstackopen-pokedex-56466.herokuapp.com/health"
           checkstring: "ok"
-          rollbackonhealthcheckfailed: true
+          # rollbackonhealthcheckfailed: true
       
       - name: Success build
         uses: rjstone/discord-webhook-notify@v1
