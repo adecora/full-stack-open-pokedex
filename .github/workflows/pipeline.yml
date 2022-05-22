@@ -53,9 +53,6 @@ jobs:
           rollbackonhealthcheckfailed: true
 
   tag_release:
-    if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push' }}
-    env:
-      COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message)) }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     permissions:
@@ -66,7 +63,9 @@ jobs:
         with:
           fetch-depth: '0'
       - name: Bump version and push tag
+        if: ${{ !contains(env.COMMIT_MESSAGES, '#skip') && github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@1.36.0
         env:
+          COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message)) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
